@@ -1,0 +1,135 @@
+.home-background-yellow {
+    background-color: #fff15c;
+    color: #333; 
+    padding: 5px;
+    border-radius: 10px;
+}
+
+.home-background-blue {
+    background-color: #2fade4;
+    color: #333; 
+    padding: 5px;
+    border-radius: 10px; 
+}
+
+.home-background-pink {
+    background-color: #972d8b;
+    color: #333; 
+    padding: 5px;
+    border-radius: 10px; 
+}
+
+.dashboard-card-size {
+    width: 350px;
+    height: 500px;
+}  
+
+.learn-card-size {
+    width: 200px;
+    height: 250px;
+} 
+
+.is-orange {
+    background-color: #fd7430;
+}
+
+/* General Container */
+.container.is-widescreen {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Card Styling */
+.card {
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+/* Card Header */
+.card h1 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #333;
+    text-align: center;
+}
+
+/* Word Display */
+.card-image p.is-size-2 {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #2d2d2d;
+    text-align: center;
+}
+
+/* Synonyms Tags */
+.tag.is-warning.is-light {
+    background-color: #ffe082;
+    color: #5d4037;
+    border-radius: 16px;
+    padding: 5px 10px;
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+/* Progress Bar */
+.progress.is-warning {
+    background-color: #f4f4f4;
+    height: 8px;
+    border-radius: 5px;
+}
+
+.progress.is-warning::-webkit-progress-value {
+    background-color: #ffca28;
+    border-radius: 5px;
+}
+
+/* Button Styling */
+.button.is-medium {
+    font-size: 1.1rem;
+    padding: 12px 20px;
+    border-radius: 8px;
+}
+
+.button.is-warning {
+    background-color: #ffca28;
+    color: #fff;
+    border: none;
+    transition: background-color 0.3s ease;
+}
+
+.button.is-warning:hover {
+    background-color: #ffa000;
+}
+
+.button.is-dark {
+    background-color: #2d2d2d;
+    color: #fff;
+    border: none;
+    transition: background-color 0.3s ease;
+}
+
+.button.is-dark:hover {
+    background-color: #424242;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .card h1 {
+        font-size: 1.2rem;
+    }
+
+    .card-image p.is-size-2 {
+        font-size: 2rem;
+    }
+
+    .button.is-medium {
+        font-size: 1rem;
+    }
+}
