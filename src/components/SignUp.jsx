@@ -33,7 +33,7 @@ export default function SignUp() {
   const onFormSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('https:sambha.in/api/grex/auth/signup', formData, {
+      const response = await axios.post('https://sambha.in/api/grex/auth/signup', formData, {
         headers: { 'Content-Type': 'application/json' }
       });
       if (response.data.code === 200) {
