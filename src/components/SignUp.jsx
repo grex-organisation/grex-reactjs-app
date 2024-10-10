@@ -30,10 +30,13 @@ export default function SignUp() {
   }
 
   // Global error handler for failed API calls
-  const commonGlobalError = (error) => {
-    setIsGlobalError(true);
-    setGlobalError(error.response?.data?.data?.error || "Something went wrong. Please try again.");
-  }
+const commonGlobalError = (error) => {
+  setIsGlobalError(true);
+  // Get the error message from the backend response
+  const errorMessage = error.response?.data?.data || "Something went wrong. Please try again.";
+  setGlobalError(errorMessage); // Set the error message for display
+}
+
 
   // Step 1: Handle form submission and send OTP
   const onFormSubmit = async (e) => {
@@ -44,7 +47,9 @@ export default function SignUp() {
         headers: { 'Content-Type': 'application/json' }
       });
       
+      if (response.data.code === 200) {
         setIsOtpSent(true);  // OTP has been sent, now prompt user to enter OTP
+      }
     
     } catch (error) {
       commonGlobalError(error);
@@ -59,8 +64,10 @@ export default function SignUp() {
       const otpResponse = await axios.post('https://sambha.in/api/grex/auth/otp', { email: formData.email, otp: formData.otp }, {
         headers: { 'Content-Type': 'application/json' }
       });
-        navigate('/login');  // OTP is verified, navigate to login page
       
+      if (otpResponse.data.code === 200) {
+        navigate('/login');  // OTP is verified, navigate to login page
+      }
     } catch (error) {
       setOtpErrorMessage("Invalid OTP. Please try again.");
     }
