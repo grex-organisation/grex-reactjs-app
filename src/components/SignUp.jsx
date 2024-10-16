@@ -49,7 +49,7 @@ export default function SignUp() {
 
     try {
       // Send signup data (username, email, password) + reCAPTCHA token to backend
-      const response = await axios.post('https://sambha.in/api/grex/auth/signup', { ...formData, recaptchaToken }, {
+      const response = await axios.post('http://localhost:8080/api/grex/auth/signup', { ...formData, recaptchaToken }, {
         headers: { 'Content-Type': 'application/json' }
       });
       if (response.data.code === 200) {
@@ -65,7 +65,7 @@ export default function SignUp() {
     e.preventDefault();
     try {
       // Verify the OTP entered by the user
-      const otpResponse = await axios.post('https://sambha.in/api/grex/auth/otp', { email: formData.email, otp: formData.otp }, {
+      const otpResponse = await axios.post('http://localhost:8080/api/grex/auth/otp', { email: formData.email, otp: formData.otp }, {
         headers: { 'Content-Type': 'application/json' }
       });
       if (otpResponse.data.code === 200) {

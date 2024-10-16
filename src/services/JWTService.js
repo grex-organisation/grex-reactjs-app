@@ -1,7 +1,7 @@
 import { jwtDecode } from "jwt-decode";
 
 const TOKEN_KEY = 'jwtToken';
-const TOKEN_EXPIRY = 300;
+const TOKEN_EXPIRY = 57600;
 
 export const setToken = (token) => {
     localStorage.setItem(TOKEN_KEY, token);

@@ -11,7 +11,7 @@ export default function AdminManageGroup() {
     async function loadGroups() {
         try {
             const token = getToken();
-            const response = await axios.get("https://sambha.in/api/grex/admin/groups", { headers: { 'Authorization': `Bearer ${token}`, 'Content-Type': 'application/json' } });
+            const response = await axios.get("http://localhost:8080/api/grex/admin/groups", { headers: { 'Authorization': `Bearer ${token}`, 'Content-Type': 'application/json' } });
             const final_data = response.data.data;
             setGroups(final_data);
 
@@ -40,7 +40,7 @@ export default function AdminManageGroup() {
     e.preventDefault();
     try {
       const token = getToken();
-      const response = await axios.post('https://sambha.in/api/grex/admin/groups/add',formData, { headers: { 'Authorization': `Bearer ${token}`, 'Content-Type': 'application/json' } });
+      const response = await axios.post('http://localhost:8080/api/grex/admin/groups/add',formData, { headers: { 'Authorization': `Bearer ${token}`, 'Content-Type': 'application/json' } });
       if (response.data.code === 200) {
         console.log("group added OK");
         setGroups([...groups,formData]);
@@ -54,7 +54,7 @@ export default function AdminManageGroup() {
   async function deleteGroup(groupId){
     try {
       const token = getToken();
-      const response = await axios.get(`https://sambha.in/api/grex/admin/groups/delete/`+groupId,{ headers: { 'Authorization': `Bearer ${token}`, 'Content-Type': 'application/json' } });
+      const response = await axios.get(`http://localhost:8080/api/grex/admin/groups/delete/`+groupId,{ headers: { 'Authorization': `Bearer ${token}`, 'Content-Type': 'application/json' } });
       if (response.data.code === 200) {
         console.log("group deleted");
         setGroups(groups.filter((group)=>(group.groupId !== groupId)))
@@ -67,7 +67,7 @@ export default function AdminManageGroup() {
   async function updateStatus(groupId){
     try {
       const token = getToken();
-      const response = await axios.get(`https://sambha.in/api/grex/admin/groups/`+groupId+"/status",{ headers: { 'Authorization': `Bearer ${token}`, 'Content-Type': 'application/json' } });
+      const response = await axios.get(`http://localhost:8080/api/grex/admin/groups/`+groupId+"/status",{ headers: { 'Authorization': `Bearer ${token}`, 'Content-Type': 'application/json' } });
       if (response.data.code === 200) {
         console.log("status flipped");
         loadGroups();

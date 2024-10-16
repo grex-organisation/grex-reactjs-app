@@ -30,7 +30,7 @@ export default function LogIn() {
   async function onFormSubmit(e) {
     e.preventDefault();
     try {
-      const response = await axios.post('https://sambha.in/api/grex/auth/login', formData);
+      const response = await axios.post('http://localhost:8080/api/grex/auth/login', formData);
       if (response.data.code === 200) {
         setToken(response.data.data.token);
         navigate('/dashboard');

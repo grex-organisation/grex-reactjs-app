@@ -30,7 +30,7 @@ export default function AdminManageWord() {
     async function loadWordData() {
         try {
             const token = getToken();
-            const response = await axios.get("https://sambha.in/api/grex/admin/words", {
+            const response = await axios.get("http://localhost:8080/api/grex/admin/words", {
                 headers: {
                     'Authorization': `Bearer ${token}`,
                     'Content-Type': 'application/json'
@@ -99,7 +99,7 @@ export default function AdminManageWord() {
 
             if (isEditMode) {
                 // Update existing word
-                const response = await axios.put(`https://sambha.in/api/grex/admin/words/${formData.wordId}`, requestPayload, {
+                const response = await axios.put(`http://localhost:8080/api/grex/admin/words/${formData.wordId}`, requestPayload, {
                     headers: {
                         'Authorization': `Bearer ${token}`,
                         'Content-Type': 'application/json'
@@ -110,7 +110,7 @@ export default function AdminManageWord() {
                 }
             } else {
                 // Create new word
-                const response = await axios.post("https://sambha.in/api/grex/admin/words/add", requestPayload, {
+                const response = await axios.post("http://localhost:8080/api/grex/admin/words/add", requestPayload, {
                     headers: {
                         'Authorization': `Bearer ${token}`,
                         'Content-Type': 'application/json'
@@ -144,7 +144,7 @@ export default function AdminManageWord() {
     async function deleteWord() {
         try {
             const token = getToken();
-            const response = await axios.delete(`https://sambha.in/api/grex/admin/words/${wordToDelete}`, {
+            const response = await axios.delete(`http://localhost:8080/api/grex/admin/words/${wordToDelete}`, {
                 headers: {
                     'Authorization': `Bearer ${token}`,
                     'Content-Type': 'application/json'

@@ -21,9 +21,10 @@ export default function Group() {
     async function loadWordData() {
         try {
             const token = getToken(); 
-            const response = await axios.get(`https://sambha.in/api/grex/group/${params.groupId}`, {
+            const response = await axios.get(`http://localhost:8080/api/grex/progress/${params.groupId}`, {
                 headers: {'Authorization': `Bearer ${token}`, 'Content-Type': 'application/json'}
             });
+            console.log(response);
             const final_data = response.data.data[0];
             setGroup(final_data);
             setIndex(final_data.groupProgress);
@@ -69,7 +70,7 @@ export default function Group() {
     async function updateGroupProgress() {
         try {
             const token = getToken();
-            await axios.post(`https://sambha.in/api/grex/group/${params.groupId}/update`, {}, {
+            await axios.post(`http://localhost:8080/api/grex/group/${params.groupId}/update`, {}, {
                 headers: {'Authorization': `Bearer ${token}`, 'Content-Type': 'application/json'}
             });
         } catch (error) {
