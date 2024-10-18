@@ -8,13 +8,13 @@ export default function Home() {
     <div className='container-widescreen'>
 
 
-      <div class="columns p-6 m-3 home-background-yellow">
+      <div className="columns p-6 m-3 home-background-yellow">
 
-        <div class="column">
+        <div className="column">
           
-          <div class="card">
-          <div class="card-image">
-            <figure class="image is-4by3">
+          <div className="card">
+          <div className="card-image">
+            <figure className="image is-4by3">
               <img
                 src="https://bulma.io/assets/images/placeholders/1280x960.png"
                 alt="Placeholder image"
@@ -32,11 +32,11 @@ export default function Home() {
 
 
 
-      <div class="columns p-6 m-3 home-background-blue">
+      <div className="columns p-6 m-3 home-background-blue">
 
-        <div class="column"><div class="card">
-          <div class="card-image">
-            <figure class="image is-4by3">
+        <div className="column"><div className="card">
+          <div className="card-image">
+            <figure className="image is-4by3">
               <img
                 src="https://bulma.io/assets/images/placeholders/1280x960.png"
                 alt="Placeholder image"
@@ -46,9 +46,9 @@ export default function Home() {
         </div>
         </div>
 
-        <div class="column"><div class="card">
-          <div class="card-image">
-            <figure class="image is-4by3">
+        <div className="column"><div className="card">
+          <div className="card-image">
+            <figure className="image is-4by3">
               <img
                 src="https://bulma.io/assets/images/placeholders/1280x960.png"
                 alt="Placeholder image"
@@ -58,9 +58,9 @@ export default function Home() {
         </div>
         </div>
 
-        <div class="column"><div class="card">
-          <div class="card-image">
-            <figure class="image is-4by3">
+        <div className="column"><div className="card">
+          <div className="card-image">
+            <figure className="image is-4by3">
               <img
                 src="https://bulma.io/assets/images/placeholders/1280x960.png"
                 alt="Placeholder image"
@@ -72,11 +72,11 @@ export default function Home() {
       </div>
 
 
-      <div class="columns p-6 m-3 home-background-pink">
+      <div className="columns p-6 m-3 home-background-pink">
 
-        <div class="column"><div class="card">
-          <div class="card-image">
-            <figure class="image is-4by3">
+        <div className="column"><div className="card">
+          <div className="card-image">
+            <figure className="image is-4by3">
               <img
                 src="https://bulma.io/assets/images/placeholders/1280x960.png"
                 alt="Placeholder image"
@@ -86,9 +86,9 @@ export default function Home() {
         </div>
         </div>
 
-        <div class="column"><div class="card">
-          <div class="card-image">
-            <figure class="image is-4by3">
+        <div className="column"><div className="card">
+          <div className="card-image">
+            <figure className="image is-4by3">
               <img
                 src="https://bulma.io/assets/images/placeholders/1280x960.png"
                 alt="Placeholder image"
@@ -98,9 +98,9 @@ export default function Home() {
         </div>
         </div>
 
-        <div class="column"><div class="card">
-          <div class="card-image">
-            <figure class="image is-4by3">
+        <div className="column"><div className="card">
+          <div className="card-image">
+            <figure className="image is-4by3">
               <img
                 src="https://bulma.io/assets/images/placeholders/1280x960.png"
                 alt="Placeholder image"

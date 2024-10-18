@@ -5,17 +5,17 @@ export default function AdminDashboard() {
   return (
     <div className='container'>
 
-<div class="columns">
+<div className="columns">
   
-  <div class="column">
+  <div className="column">
 
-  <div class="card has-background-danger">
+  <div className="card has-background-danger">
   <Link to="/admin/groups">
-  <header class="card-header">
-    <p class="card-header-title">Manage Groups</p>
-    <button class="card-header-icon" aria-label="more options">
-      <span class="icon">
-        <i class="fas fa-angle-down" aria-hidden="true"></i>
+  <header className="card-header">
+    <p className="card-header-title">Manage Groups</p>
+    <button className="card-header-icon" aria-label="more options">
+      <span className="icon">
+        <i className="fas fa-angle-down" aria-hidden="true"></i>
       </span>
     </button>
   </header>
@@ -24,15 +24,15 @@ export default function AdminDashboard() {
 
 </div>
 
-  <div class="column">
+  <div className="column">
 
-  <div class="card has-background-primary">
+  <div className="card has-background-primary">
   <Link to="/admin/words">
-  <header class="card-header">
-    <p class="card-header-title">Manage Words</p>
-    <button class="card-header-icon" aria-label="more options">
-      <span class="icon">
-        <i class="fas fa-angle-down" aria-hidden="true"></i>
+  <header className="card-header">
+    <p className="card-header-title">Manage Words</p>
+    <button className="card-header-icon" aria-label="more options">
+      <span className="icon">
+        <i className="fas fa-angle-down" aria-hidden="true"></i>
       </span>
     </button>
   </header>

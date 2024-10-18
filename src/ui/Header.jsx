@@ -28,7 +28,7 @@ async function onLogin(){
         <nav className="navbar is-black" role="navigation" aria-label="main navigation">
             <div className="navbar-brand">
                 <span className="navbar-item">
-                <figure class="logo"><a href="/"><img src={icon_logo} alt="grex vocublary" width="100" height="80"/></a></figure>
+                <figure className="logo"><a href="/"><img src={icon_logo} alt="grex vocublary" width="100" height="80"/></a></figure>
                 </span>
 
                 <a role="button" className="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
