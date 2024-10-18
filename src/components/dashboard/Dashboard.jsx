@@ -8,6 +8,7 @@ export default function Dashboard() {
 
   const dashboardOptions = [
     {
+      "id" : 1,
       "name": "Learn",
       "link": "/learn",
       "color": "danger",
@@ -23,9 +24,9 @@ export default function Dashboard() {
       <div className='columns'>
 
         {
-          dashboardOptions.map((item, key) => (
+          dashboardOptions.map((item) => (
 
-            <div className='column is-one-fourth'>
+            <div className='column is-one-fourth' key={item.id}>
               <DashboardCard name={item.name} link={item.link} image={item.image} content={item.content}/>
             </div>
 

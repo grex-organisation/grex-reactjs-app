@@ -6,7 +6,7 @@ import LogIn from '../components/LogIn';
 import SignUp from '../components/SignUp';
 import Dashboard from '../components/dashboard/Dashboard';
 import Learn from '../components/learn/Learn';
-import Group from '../components/learn/Group';
+import FlashCard from '../components/learn/FlashCard';
 import Header from '../ui/Header';
 import Ranking from '../components/ranking/Ranking';
 import Challenge from '../components/challenge/Challenge';
@@ -26,7 +26,7 @@ export default function ApplicationRouter() {
                 <Route path="/" element={<Home />} />
                                 
                 <Route element={<PrivateRoute/>}> <Route path="/learn" element={<Learn/>} /></Route>
-                <Route element={<PrivateRoute/>}> <Route path="//learn/group/:groupId" element={<Group/>} /></Route>
+                <Route element={<PrivateRoute/>}> <Route path="/learn/group/:groupId" element={<FlashCard/>} /></Route>
                 <Route element={<PrivateRoute/>}> <Route path="/dashboard" element={<Dashboard/>} /></Route>
                 <Route element={<PrivateRoute/>}> <Route path="/ranking" element={<Ranking/>} /></Route>
                 <Route path="/challenge" element={<Challenge/>} />
