@@ -52,6 +52,8 @@ function onCardClick(){
                 </div>
             </div>
         </div>
+         
+       <progress class="progress is-success is-large" value={props.progress} max="100"/>
         </div>
   )
 }

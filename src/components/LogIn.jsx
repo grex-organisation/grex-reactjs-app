@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import logo from '../assests/grex.png';
+import logo from '../assests/logo.png';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { setToken } from '../services/JWTService';
@@ -14,6 +14,8 @@ export default function LogIn() {
   const [isGlobalError, setIsGlobalError] = useState(false);
   const [isValidUserEmail, setIsValidUserEmail] = useState(false);
   const [isValidUserPassword, setIsValidUserPassword] = useState(false);
+  const [isEmailTouched, setIsEmailTouched] = useState(false); // Added
+  const [isPasswordTouched, setIsPasswordTouched] = useState(false); // Added
 
   const [formData, setFormData] = useState({ email: '', password: '' });
   const navigate = useNavigate();
@@ -41,6 +43,7 @@ export default function LogIn() {
   }
 
   function validateEmail() {
+    setIsEmailTouched(true); // Mark the email field as touched
     const email = formData.email.trim();
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
@@ -54,6 +57,7 @@ export default function LogIn() {
   }
 
   function validatePassword() {
+    setIsPasswordTouched(true); // Mark the password field as touched
     const password = formData.password.trim();
     const passwordRegex = /^(?=.*[A-Z])[A-Za-z0-9_@]+$/;
 
@@ -70,7 +74,7 @@ export default function LogIn() {
     <div className="container mt-6">
       <div className="columns is-centered">
         <div className="column is-one-third">
-          <figure className="image is-256x256 mx-auto mb-5"> {/* Increased image size */}
+          <figure className="image is-128x128 mx-auto mb-5">
             <img src={logo} alt="Logo" />
           </figure>
         </div>
@@ -89,7 +93,7 @@ export default function LogIn() {
               <label className="label">Email</label>
               <div className="control has-icons-left has-icons-right">
                 <input
-                  className={`input ${isValidUserEmail ? 'is-success' : 'is-danger'}`}
+                  className={`input ${isEmailTouched && (isValidUserEmail ? 'is-success' : 'is-danger')}`}
                   type="email"
                   name="email"
                   value={formData.email}
@@ -100,13 +104,13 @@ export default function LogIn() {
                 <span className="icon is-small is-left">
                   <FontAwesomeIcon icon={faEnvelope} />
                 </span>
-                {isValidUserEmail && (
+                {isEmailTouched && isValidUserEmail && (
                   <span className="icon is-small is-right has-text-success">
                     <FontAwesomeIcon icon={faCheck} />
                   </span>
                 )}
               </div>
-              {!isValidUserEmail && userEmailErrorMessage && (
+              {isEmailTouched && !isValidUserEmail && userEmailErrorMessage && (
                 <p className="help is-danger">{userEmailErrorMessage}</p>
               )}
             </div>
@@ -115,7 +119,7 @@ export default function LogIn() {
               <label className="label">Password</label>
               <div className="control has-icons-left has-icons-right">
                 <input
-                  className={`input ${isValidUserPassword ? 'is-success' : 'is-danger'}`}
+                  className={`input ${isPasswordTouched && (isValidUserPassword ? 'is-success' : 'is-danger')}`}
                   type="password"
                   name="password"
                   value={formData.password}
@@ -126,27 +130,25 @@ export default function LogIn() {
                 <span className="icon is-small is-left">
                   <FontAwesomeIcon icon={faUserSecret} />
                 </span>
-                {isValidUserPassword && (
+                {isPasswordTouched && isValidUserPassword && (
                   <span className="icon is-small is-right has-text-success">
                     <FontAwesomeIcon icon={faCheck} />
                   </span>
                 )}
               </div>
-              {!isValidUserPassword && userPasswordErrorMessage && (
+              {isPasswordTouched && !isValidUserPassword && userPasswordErrorMessage && (
                 <p className="help is-danger">{userPasswordErrorMessage}</p>
               )}
             </div>
 
             <div className="field">
               <div className="control">
-                <button className="button is-warning is-fullwidth mt-4">Log in</button>
+                <button className="button is-white is-hovered is-rounded is-fullwidth">Log in</button>
               </div>
             </div>
 
             <div className="has-text-centered mt-4">
-              <Link to="/signup" className="button is-link is-fullwidth"> {/* Styled as button */}
-                Sign Up
-              </Link>
+              <Link to="/signup" className="button is-dark is-hovered is-rounded is-fullwidth">Sign Up</Link>
             </div>
           </form>
         </div>
