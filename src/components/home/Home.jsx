@@ -1,123 +1,28 @@
-import React from 'react'
-import { getToken, isAuthenticated } from '../../services/JWTService'
+import React, { useContext, useEffect } from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
+import {isAuthenticated } from '../../services/JWTService'
+import Header from '../../ui/Header';
 
-export default function Home() {
+const Home = () => {
+  
+  const navigate = useNavigate();
+  const location = useLocation();
 
+
+  // Redirect based on authentication status
+  useEffect(() => {
+    if (isAuthenticated) {
+      navigate('/dashboard'); // Redirect to dashboard if authenticated
+    } else if (location.pathname !== '/login' && location.pathname !== '/signup') {
+      navigate('/login'); // Redirect to login if unauthenticated and not already on login/signup
+    }
+  }, [isAuthenticated, navigate, location.pathname]);
 
   return (
-    <div className='container-widescreen'>
-
-
-      <div className="columns p-6 m-3 home-background-yellow">
-
-        <div className="column">
-          
-          <div className="card">
-          <div className="card-image">
-            <figure className="image is-4by3">
-              <img
-                src="https://bulma.io/assets/images/placeholders/1280x960.png"
-                alt="Placeholder image"
-              />
-            </figure>
-          </div>
-        </div>
+    <div>
     
-        <button className="button is-black is-fullwidth mt-4">Learn</button>
-
-
-        </div>
-
-      </div>
-
-
-
-      <div className="columns p-6 m-3 home-background-blue">
-
-        <div className="column"><div className="card">
-          <div className="card-image">
-            <figure className="image is-4by3">
-              <img
-                src="https://bulma.io/assets/images/placeholders/1280x960.png"
-                alt="Placeholder image"
-              />
-            </figure>
-          </div>
-        </div>
-        </div>
-
-        <div className="column"><div className="card">
-          <div className="card-image">
-            <figure className="image is-4by3">
-              <img
-                src="https://bulma.io/assets/images/placeholders/1280x960.png"
-                alt="Placeholder image"
-              />
-            </figure>
-          </div>
-        </div>
-        </div>
-
-        <div className="column"><div className="card">
-          <div className="card-image">
-            <figure className="image is-4by3">
-              <img
-                src="https://bulma.io/assets/images/placeholders/1280x960.png"
-                alt="Placeholder image"
-              />
-            </figure>
-          </div>
-        </div>
-        </div>
-      </div>
-
-
-      <div className="columns p-6 m-3 home-background-pink">
-
-        <div className="column"><div className="card">
-          <div className="card-image">
-            <figure className="image is-4by3">
-              <img
-                src="https://bulma.io/assets/images/placeholders/1280x960.png"
-                alt="Placeholder image"
-              />
-            </figure>
-          </div>
-        </div>
-        </div>
-
-        <div className="column"><div className="card">
-          <div className="card-image">
-            <figure className="image is-4by3">
-              <img
-                src="https://bulma.io/assets/images/placeholders/1280x960.png"
-                alt="Placeholder image"
-              />
-            </figure>
-          </div>
-        </div>
-        </div>
-
-        <div className="column"><div className="card">
-          <div className="card-image">
-            <figure className="image is-4by3">
-              <img
-                src="https://bulma.io/assets/images/placeholders/1280x960.png"
-                alt="Placeholder image"
-              />
-            </figure>
-          </div>
-        </div>
-        </div>
-      </div>
-      
-
-
-      
-
-
-
-
     </div>
-  )
-}
+  );
+};
+
+export default Home;

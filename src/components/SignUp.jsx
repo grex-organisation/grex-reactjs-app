@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import logo from '../assests/grex.png';
+import logo from '../assests/logo.png';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEnvelope, faUser, faUserSecret, faCheck, faKey } from '@fortawesome/free-solid-svg-icons';
 import axios from 'axios';
@@ -138,10 +138,11 @@ export default function SignUp() {
   }
 
   return (
-    <div className="container">
-      <div className="columns my-6 is-centered">
-        <div className="column is-one-third has-text-centered">
-          <figure className="image is-128x128 is-inline-block">
+    <div className="container mt-6">
+
+      <div className="columns is-centered">
+        <div className="column is-one-third">
+          <figure className="image is-128x128 mx-auto mb-5"> {/* Increased image size */}
             <img src={logo} alt="Logo" />
           </figure>
         </div>
@@ -205,7 +206,7 @@ export default function SignUp() {
                 {/* Submit button */}
                 <div className="field">
                   <div className="control">
-                    <button type="submit" className={`button is-fullwidth ${isValidUserName && isValidUserEmail && isValidUserPassword && captchaVerified ? 'is-warning' : 'is-static'}`}
+                    <button type="submit" className={`button is-dark is-hovered is-rounded is-fullwidth ${isValidUserName && isValidUserEmail && isValidUserPassword && captchaVerified ? 'is-warning' : 'is-static'}`}
                       disabled={!isValidUserName || !isValidUserEmail || !isValidUserPassword || !captchaVerified}>
                       Send OTP
                     </button>
@@ -232,7 +233,7 @@ export default function SignUp() {
 
                 <div className="field">
                   <div className="control">
-                    <button type="submit" className={`button is-fullwidth ${isValidOtp ? 'is-warning' : 'is-static'}`} disabled={!isValidOtp}>
+                    <button type="submit" className={`button is-dark is-hovered is-rounded is-fullwidth ${isValidOtp ? 'is-warning' : 'is-static'}`} disabled={!isValidOtp}>
                       Verify OTP
                     </button>
                   </div>

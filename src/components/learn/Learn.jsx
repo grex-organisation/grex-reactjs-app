@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import Card from '../../ui/Card'; // Assuming you have a Card component for displaying individual group items
 import { getToken } from '../../services/JWTService';
 import axios from 'axios';
-import './Learn.css';
+import icon_next from '../../assests/icons/next.png'
+import icon_reset from '../../assests/icons/reset.png'
+import { Link } from 'react-router-dom'
+import ProgressBar from './ProgressBar';
 import { useNavigate } from 'react-router-dom'; // For navigation
 
 export default function Learn() {
@@ -51,7 +53,7 @@ export default function Learn() {
 
     // Navigate to individual group page
     const handleGroupClick = (groupId) => {
-        navigate(`/group/${groupId}`); // Adjust this path based on your route setup
+        navigate(`/learn/group/${groupId}`); // Adjust this path based on your route setup
     };
 
     if (loading) {
@@ -76,25 +78,44 @@ export default function Learn() {
 
     return (
         <div className="container mt-5">
-            <h1 className="title has-text-centered">Learn English with Flashcards</h1>
             {groups.length === 0 ? (
                 <div className="notification is-warning has-text-centered">
-                    No flashcard groups available.
+                    No Groups available.
                 </div>
             ) : (
-                <div className="columns is-multiline">
-                    {groups.map((group, index) => (
-                        <div className="column is-one-quarter" key={index}>
-                            <Card 
-                                id={group.groupId} 
-                                name={group.groupName} // Display group name
-                                progress={2 * progressData[group.groupId] || 0} // Progress value for the group
-                                onClick={() => handleGroupClick(group.groupId)} // Handle click event to navigate
-                            />
-                        </div>
-                    ))}
+                <div className="table-container">
+                  <table className="table is-fullwidth">
+                    <thead>
+                        <tr>
+                            <th><abbr title="Group Name">Group Name</abbr></th>
+                            <th><abbr title="Group Id">Group Id</abbr></th>
+                            <th><abbr title="Progress">Progress</abbr></th>
+                            <th><abbr title=""></abbr></th>
+                            <th><abbr title=""></abbr></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {groups.map((group, index) => (
+                            <tr key={index} onClick={() => handleGroupClick(group.groupId)}>
+                                <td>{group.groupName}</td>
+                                <td>{group.groupId}</td>
+                                <td><ProgressBar progress={progressData[group.groupId] || 0} /></td>
+                                <td>{progressData[group.groupId]} / 50</td>
+                                <td>
+                                    <Link>
+                                        <span className="is-flex is-align-items-center">
+                                            <img onClick={() => handleGroupClick(group.groupId)} className="m-2" src={icon_next} alt="Continue Icon" style={{ height: '36px', width: '36px' }} />
+                                            <img className="m-2" src={icon_reset} alt="Reset Icon" style={{ height: '36px', width: '36px' }} />
+                                        </span>
+                                    </Link>
+                                </td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
                 </div>
             )}
+        
         </div>
     );
 }

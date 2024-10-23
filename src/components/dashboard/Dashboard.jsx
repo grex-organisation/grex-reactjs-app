@@ -6,16 +6,7 @@ import DashboardCard from '../../ui/DashboardCard';
 
 export default function Dashboard() {
 
-  const dashboardOptions = [
-    {
-      "id" : 1,
-      "name": "Learn",
-      "link": "/learn",
-      "color": "danger",
-      "image": Learn,
-      "content": "learn 5000+ GRE words in smart way"
-    }
-  ];
+
 
 
   return (
@@ -23,15 +14,7 @@ export default function Dashboard() {
 
       <div className='columns'>
 
-        {
-          dashboardOptions.map((item) => (
-
-            <div className='column is-one-fourth' key={item.id}>
-              <DashboardCard name={item.name} link={item.link} image={item.image} content={item.content}/>
-            </div>
-
-          ))
-        }
+        DASHBOARD
 
 
 
