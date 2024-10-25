@@ -1,7 +1,7 @@
 import React, { useContext, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import {isAuthenticated } from '../../services/JWTService'
-import Header from '../../ui/Header';
+import Header from '../Header';
 
 const Home = () => {
   

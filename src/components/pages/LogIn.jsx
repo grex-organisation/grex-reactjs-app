@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import logo from '../assests/logo.png';
+import logo from '../../assets/icons/logo.png';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import { setToken } from '../services/JWTService';
+import { setToken } from '../../services/JWTService';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEnvelope, faUserSecret, faCheck } from '@fortawesome/free-solid-svg-icons';
 
@@ -32,7 +32,7 @@ export default function LogIn() {
   async function onFormSubmit(e) {
     e.preventDefault();
     try {
-      const response = await axios.post('https://sambha.in/api/grex/auth/login', formData);
+      const response = await axios.post('http://localhost:8080/api/grex/auth/login', formData);
       if (response.data.code === 200) {
         setToken(response.data.data.token);
         navigate('/dashboard');
