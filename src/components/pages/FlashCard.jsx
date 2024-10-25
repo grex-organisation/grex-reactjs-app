@@ -19,7 +19,7 @@ export default function FlashCard() {
     async function loadFlashCardData() {
         try {
             const token = getToken();
-            const response = await axios.get(`http://localhost:8080/api/grex/flashcard/${groupId}`, {
+            const response = await axios.get(`https://sambha.in/api/grex/flashcard/${groupId}`, {
                 headers: { 'Authorization': `Bearer ${token}`, 'Content-Type': 'application/json' }
             });
             const flashcardData = response.data.data;
@@ -35,7 +35,7 @@ export default function FlashCard() {
         try {
         
             const token = getToken();
-            const response = await axios.get(`http://localhost:8080/api/grex/progress/${groupId}`, {
+            const response = await axios.get(`https://sambha.in/api/grex/progress/${groupId}`, {
                 headers: { 'Authorization': `Bearer ${token}`, 'Content-Type': 'application/json' }
             });
             const progressData = response.data.data;
@@ -51,7 +51,7 @@ export default function FlashCard() {
     async function updateGroupProgressInBackend(newProgress) {
         try {
             const token = getToken();
-            await axios.post(`http://localhost:8080/api/grex/progress/group/${groupId}/update`, { progress: newProgress }, {
+            await axios.post(`https://sambha.in/api/grex/progress/group/${groupId}/update`, { progress: newProgress }, {
                 headers: { 'Authorization': `Bearer ${token}`, 'Content-Type': 'application/json' }
             });
         } catch (error) {

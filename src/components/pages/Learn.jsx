@@ -22,7 +22,7 @@ export default function Learn() {
 
                 // make API call
                 const token = getToken();
-                const response = await axios.get("http://localhost:8080/api/grex/groups", {
+                const response = await axios.get("https://sambha.in/api/grex/groups", {
                     headers: { 'Authorization': `Bearer ${token}` }
                 });
                 const data = response.data.data;
@@ -39,7 +39,7 @@ export default function Learn() {
         
                 // make API call
                 const token = getToken();
-                const response = await axios.get("http://localhost:8080/api/grex/progress", {
+                const response = await axios.get("https://sambha.in/api/grex/progress", {
                     headers: { 'Authorization': `Bearer ${token}` }
                 });
                 const data = response.data.data;
