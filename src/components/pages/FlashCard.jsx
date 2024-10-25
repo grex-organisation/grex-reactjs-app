@@ -4,84 +4,70 @@ import { getToken } from '../../services/JWTService';
 import axios from 'axios';
 
 export default function FlashCard() {
+    
     const { groupId } = useParams();
-    const [groupWords, setGroupWords] = useState([]);  // Stores flashcard data (words)
-    const [currentProgress, setCurrentProgress] = useState(0);  // Stores current user progress
-    const [index, setIndex] = useState(0);  // Index for tracking which word to show
+    const [groupWords, setGroupWords] = useState([]);
+    const [currentProgress, setCurrentProgress] = useState(1);  // Start progress at 1
+    const [index, setIndex] = useState(0);
     const [isNextButtonDisabled, setNextButtonDisabled] = useState(false);
     const [isPreviousButtonDisabled, setPreviousButtonDisabled] = useState(true);
-    const [endIndex, setEndIndex] = useState(0);  // The max index based on group words length
+    const [endIndex, setEndIndex] = useState(0);
 
-    // Calculate the completion percentage
-    const percentage = (currentProgress + 1) * 100 / (endIndex + 1);
+    const percentage = (currentProgress) * 100 / (endIndex);
 
     // Load flashcard data for the groupId
     async function loadFlashCardData() {
         try {
             const token = getToken();
-            const response = await axios.get(`https://sambha.in/api/grex/flashcard/${groupId}`, {
+            const response = await axios.get(`http://localhost:8080/api/grex/flashcard/${groupId}`, {
                 headers: { 'Authorization': `Bearer ${token}`, 'Content-Type': 'application/json' }
             });
             const flashcardData = response.data.data;
-            setGroupWords(flashcardData.words);  // Set the words for this group
-            setEndIndex(flashcardData.words.length - 1);  // Set the end index based on words length
+            setGroupWords(flashcardData.words);
+            setEndIndex(flashcardData.words.length);
         } catch (error) {
             console.error('Error fetching flashcard data:', error);
         }
     }
 
-    // Load user progress for the groupId
+    // Load user progress from API
     async function loadUserProgress() {
         try {
+        
             const token = getToken();
-            const response = await axios.get(`https://sambha.in/api/grex/progress/${groupId}`, {
+            const response = await axios.get(`http://localhost:8080/api/grex/progress/${groupId}`, {
                 headers: { 'Authorization': `Bearer ${token}`, 'Content-Type': 'application/json' }
             });
             const progressData = response.data.data;
-            setCurrentProgress(progressData.currentStatus);
-            setIndex(progressData.currentStatus);
+            setCurrentProgress(progressData.currentStatus || 1);  // Default to 1
+            setIndex((progressData.currentStatus || 1) - 1);
         } catch (error) {
             console.error('Error fetching user progress:', error);
         }
     }
 
+
     // Update user progress in the backend
-    async function updateGroupProgress() {
+    async function updateGroupProgressInBackend(newProgress) {
         try {
             const token = getToken();
-            await axios.post(`https://sambha.in/api/grex/progress/group/${groupId}/update`, {}, {
+            await axios.post(`http://localhost:8080/api/grex/progress/group/${groupId}/update`, { progress: newProgress }, {
                 headers: { 'Authorization': `Bearer ${token}`, 'Content-Type': 'application/json' }
             });
         } catch (error) {
-            console.error('Error updating user progress:', error);
+            console.error('Error updating user progress in the backend:', error);
         }
     }
 
-    // Update button states based on the current index
-    function updateButtonStates(newIndex) {
-        setPreviousButtonDisabled(newIndex <= 0);
-        setNextButtonDisabled(newIndex >= endIndex);
-    }
-
-    // Load both flashcard data and progress when the component mounts
-    useEffect(() => {
-        loadFlashCardData();
-        loadUserProgress();
-    }, [groupId]);
-
-    // Update the button states whenever the index changes
-    useEffect(() => {
-        updateButtonStates(index);
-    }, [index, endIndex]);
-
     // Handle the Next button click
     function onClickNext() {
-        if (index < endIndex) {
+        if (index < endIndex - 1) {
             setIndex(prevIndex => {
                 const newIndex = prevIndex + 1;
-                if (newIndex > currentProgress) {
-                    setCurrentProgress(prevProgress => prevProgress + 1);
-                    updateGroupProgress();
+                if (newIndex + 1 > currentProgress) {
+                    const newProgress = currentProgress + 1;
+                    setCurrentProgress(newProgress);
+                    updateGroupProgressInBackend(newProgress);
                 }
                 return newIndex;
             });
@@ -94,6 +80,18 @@ export default function FlashCard() {
             setIndex(prevIndex => prevIndex - 1);
         }
     }
+
+    // Load flashcard data and progress on component mount
+    useEffect(() => {
+        loadFlashCardData();
+        loadUserProgress();
+    }, [groupId]);
+
+    // Update button states whenever the index changes
+    useEffect(() => {
+        setPreviousButtonDisabled(index <= 0);
+        setNextButtonDisabled(index >= endIndex - 1);
+    }, [index, endIndex]);
 
     return (
         <div className="container is-widescreen">
@@ -116,11 +114,11 @@ export default function FlashCard() {
                                           <span key={synonym} className="tag is-warning is-light m-1">{synonym}</span>
                                       )) || "No synonyms available"}
                                 </p>
-                                <progress className="progress is-warning" value={percentage} max="100"></progress>
+                                <progress className="progress is-success" value={percentage} max="100"></progress>
                             </div>
                         </div>
+                        <button className="button is-success is-medium is-fullwidth m-2" onClick={onClickNext} disabled={isNextButtonDisabled}>Next</button>
                         <button className="button is-dark is-medium is-fullwidth m-2" onClick={onClickPrevious} disabled={isPreviousButtonDisabled}>Previous</button>
-                        <button className="button is-warning is-medium is-fullwidth m-2" onClick={onClickNext} disabled={isNextButtonDisabled}>Next</button>
                     </div>
                 </div>
                 <div className='column is-one-fifth'></div>

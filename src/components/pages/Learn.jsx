@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { getToken } from '../../services/JWTService';
 import axios from 'axios';
-import icon_next from '../../assests/icons/next.png'
-import icon_reset from '../../assests/icons/reset.png'
-import { Link } from 'react-router-dom'
-import ProgressBar from './ProgressBar';
+import icon_next from '../../assets/icons/next.png';
+import icon_reset from '../../assets/icons/reset.png';
+import { Link } from 'react-router-dom';
+import ProgressBar from '../ProgressBar';
 import { useNavigate } from 'react-router-dom'; // For navigation
 
 export default function Learn() {
@@ -18,11 +18,16 @@ export default function Learn() {
         // Function to load groups
         async function loadGroups() {
             try {
+                
+
+                // make API call
                 const token = getToken();
-                const response = await axios.get("https://sambha.in/api/grex/groups", {
+                const response = await axios.get("http://localhost:8080/api/grex/groups", {
                     headers: { 'Authorization': `Bearer ${token}` }
                 });
-                setGroups(response.data.data); // Assuming 'data' contains array of groups
+                const data = response.data.data;
+                setGroups(data);
+
             } catch (error) {
                 setError("An error occurred while fetching groups");
             }
@@ -31,11 +36,15 @@ export default function Learn() {
         // Function to load progress data
         async function loadProgressData() {
             try {
+        
+                // make API call
                 const token = getToken();
-                const response = await axios.get("https://sambha.in/api/grex/progress", {
+                const response = await axios.get("http://localhost:8080/api/grex/progress", {
                     headers: { 'Authorization': `Bearer ${token}` }
                 });
-                setProgressData(response.data.data); // Assuming 'data' contains progress
+                const data = response.data.data;
+                setProgressData(data);
+
             } catch (error) {
                 setError("An error occurred while fetching progress data");
             }
@@ -84,38 +93,37 @@ export default function Learn() {
                 </div>
             ) : (
                 <div className="table-container">
-                  <table className="table is-fullwidth">
-                    <thead>
-                        <tr>
-                            <th><abbr title="Group Name">Group Name</abbr></th>
-                            <th><abbr title="Group Id">Group Id</abbr></th>
-                            <th><abbr title="Progress">Progress</abbr></th>
-                            <th><abbr title=""></abbr></th>
-                            <th><abbr title=""></abbr></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {groups.map((group, index) => (
-                            <tr key={index} onClick={() => handleGroupClick(group.groupId)}>
-                                <td>{group.groupName}</td>
-                                <td>{group.groupId}</td>
-                                <td><ProgressBar progress={progressData[group.groupId] || 0} /></td>
-                                <td>{progressData[group.groupId]} / 50</td>
-                                <td>
-                                    <Link>
-                                        <span className="is-flex is-align-items-center">
-                                            <img onClick={() => handleGroupClick(group.groupId)} className="m-2" src={icon_next} alt="Continue Icon" style={{ height: '36px', width: '36px' }} />
-                                            <img className="m-2" src={icon_reset} alt="Reset Icon" style={{ height: '36px', width: '36px' }} />
-                                        </span>
-                                    </Link>
-                                </td>
+                    <table className="table is-fullwidth">
+                        <thead>
+                            <tr>
+                                <th><abbr title="Group Name">Group Name</abbr></th>
+                                <th><abbr title="Group Id">Group Id</abbr></th>
+                                <th><abbr title="Progress">Progress</abbr></th>
+                                <th><abbr title=""></abbr></th>
+                                <th><abbr title=""></abbr></th>
                             </tr>
-                        ))}
-                    </tbody>
-                </table>
+                        </thead>
+                        <tbody>
+                            {groups.map((group, index) => (
+                                <tr key={index} onClick={() => handleGroupClick(group.groupId)}>
+                                    <td>{group.groupName}</td>
+                                    <td>{group.groupId}</td>
+                                    <td><ProgressBar progress={progressData[group.groupId] || 0} /></td>
+                                    <td>{progressData[group.groupId]} / 50</td>
+                                    <td>
+                                        <Link>
+                                            <span className="is-flex is-align-items-center">
+                                                <img onClick={() => handleGroupClick(group.groupId)} className="m-2" src={icon_next} alt="Continue Icon" style={{ height: '36px', width: '36px' }} />
+                                                <img className="m-2" src={icon_reset} alt="Reset Icon" style={{ height: '36px', width: '36px' }} />
+                                            </span>
+                                        </Link>
+                                    </td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
                 </div>
             )}
-        
         </div>
     );
 }
