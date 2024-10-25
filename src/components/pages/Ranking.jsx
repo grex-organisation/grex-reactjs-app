@@ -9,7 +9,7 @@ export default function Ranking() {
   async function loadUserRanking() {
     try {
       const token = getToken();
-      const response = await axios.get(`http://localhost:8080/api/grex/ranking`, {
+      const response = await axios.get(`https://sambha.in/api/grex/ranking`, {
         headers: { 'Authorization': `Bearer ${token}` }
       });
       if (response.data.code === 200) {
