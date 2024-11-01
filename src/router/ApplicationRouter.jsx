@@ -24,10 +24,10 @@ export default function ApplicationRouter() {
                                 
                 <Route element={<PrivateRoute/>}> <Route path="/learn" element={<Learn/>} /></Route>
                 <Route element={<PrivateRoute/>}> <Route path="/learn/group/:groupId" element={<FlashCard/>} /></Route>
-                <Route element={<PrivateRoute/>}> <Route path="/dashboard" element={<Dashboard/>} /></Route>
+               {/* <Route element={<PrivateRoute/>}> <Route path="/dashboard" element={<Dashboard/>} /></Route> */}
                 <Route element={<PrivateRoute/>}> <Route path="/ranking" element={<Ranking/>} /></Route>
-                <Route path="/challenge" element={<Challenge/>} />
-                <Route element={<PrivateRoute/>}> <Route path="/profile" element={<Profile/>} /></Route>
+                {/* <Route path="/challenge" element={<Challenge/>} /> */}
+                {/* <Route element={<PrivateRoute/>}> <Route path="/profile" element={<Profile/>} /></Route> */}
 
             </Routes>
         </Router>
