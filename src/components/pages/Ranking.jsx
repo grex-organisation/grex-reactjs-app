@@ -8,14 +8,13 @@ import { getName } from 'country-list';
 export default function Ranking() {
   const [ranks, setRanks] = useState([]);
   const [page, setPage] = useState(1);
-  const pageSize = 200; // 200 records per page
 
   async function loadUserRanking() {
     try {
       const token = getToken();
       const response = await axios.get(`https://sambha.in/api/grex/ranking`, {
         headers: { 'Authorization': `Bearer ${token}` },
-        params: { page, pageSize }
+        params: { page }
       });
       if (response.data.code === 200) {
         const data = response.data.data;
