@@ -51,10 +51,10 @@ export default function Header() {
 
                 <div id="navbarBasicExample" className={`navbar-menu ${isActive ? 'is-active' : ''}`}>
                     <div className="navbar-start">
-                        <Link className="navbar-item" to="/dashboard"><img className="m-1" src={icon_dashboard} alt="Dashboard" /><b>Dashboard</b></Link>
+                        {/*  <Link className="navbar-item" to="/dashboard"><img className="m-1" src={icon_dashboard} alt="Dashboard" /><b>Dashboard</b></Link> */}
                         <Link className="navbar-item" to="/learn"><img className="m-1" src={icon_learn} alt="Learn" /><b>Learn</b></Link>
-                        <Link className="navbar-item" to="/ranking"><img className="m-1" src={icon_practice} alt="Practice" /><b>Practice</b></Link>
-                        <Link className="navbar-item" to="/challenge"><img className="m-1" src={icon_challenge} alt="Challenge" /><b>Challenge</b></Link>
+                        {/* <Link className="navbar-item" to="/"><img className="m-1" src={icon_practice} alt="Practice" /><b>Practice</b></Link> */}
+                        {/* <Link className="navbar-item" to="/"><img className="m-1" src={icon_challenge} alt="Challenge" /><b>Challenge</b></Link>*/}
                         <Link className="navbar-item" to="/ranking"><img className="m-1" src={icon_ranking} alt="Ranking" /><b>Ranking</b></Link>
                     </div>
 
@@ -68,21 +68,22 @@ export default function Header() {
                                         </div>
                                         <div className="dropdown-menu" id="dropdown-menu" role="menu">
                                             <div className="dropdown-content">
-                                                <Link to="/profile" className="dropdown-item">
+                                               
+                                               {/* <Link to="/profile" className="dropdown-item">
                                                     <span className="is-flex is-align-items-center">
                                                         <img className="m-1" src={icon_profile} alt="Profile Icon" style={{ height: '24px', width: '24px' }} />
                                                         <b className="ml-2">Profile</b>
                                                     </span>
-                                                </Link>
+                                                </Link> */}
 
                                                 <hr className="dropdown-divider" />
 
-                                                <Link className="dropdown-item" onClick={() => {}}>
+                                                {/*<Link className="dropdown-item" onClick={() => {}}>
                                                     <span className="is-flex is-align-items-center">
                                                         <img className="m-1" src={icon_crown} alt="Subscription Icon" style={{ height: '24px', width: '24px' }} />
                                                         <b className="ml-2">Subscription</b>
                                                     </span>
-                                                </Link>
+                                                </Link> */}
 
                                                 <hr className="dropdown-divider" />
 
