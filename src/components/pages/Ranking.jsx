@@ -8,14 +8,13 @@ import { getName } from 'country-list';
 export default function Ranking() {
   const [ranks, setRanks] = useState([]);
   const [page, setPage] = useState(1);
-  const pageSize = 200; // 200 records per page
 
   async function loadUserRanking() {
     try {
       const token = getToken();
-      const response = await axios.get(`https://sambha.in/api/grex/ranking`, {
+      const response = await axios.get(`https://grexhub.b-cdn.net/api/grex/cdn/ranking`, {
         headers: { 'Authorization': `Bearer ${token}` },
-        params: { page, pageSize }
+        params: { page }
       });
       if (response.data.code === 200) {
         const data = response.data.data;
@@ -33,7 +32,7 @@ export default function Ranking() {
   return (
     <div className='container'>
       <div className='notification is-light is-danger'>
-        <p><strong>Disclaimer:</strong> The rankings are updated every 15 minutes.</p>
+        <p><strong>Disclaimer:</strong> The rankings are updated every 1 hour.</p>
       </div>
 
       <div className='columns'>
