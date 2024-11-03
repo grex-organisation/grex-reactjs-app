@@ -19,7 +19,7 @@ export default function FlashCard() {
     async function loadFlashCardData() {
         try {
             const token = getToken();
-            const response = await axios.get(`https://sambha.in/api/grex/flashcard/${groupId}`, {
+            const response = await axios.get(`https://grexhub.b-cdn.net/api/grex/cdn/flashcard/${groupId}`, {
                 headers: { 'Authorization': `Bearer ${token}`, 'Content-Type': 'application/json' }
             });
             const flashcardData = response.data.data;
