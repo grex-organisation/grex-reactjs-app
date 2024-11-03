@@ -12,7 +12,7 @@ export default function Ranking() {
   async function loadUserRanking() {
     try {
       const token = getToken();
-      const response = await axios.get(`https://sambha.in/api/grex/ranking`, {
+      const response = await axios.get(`https://grexhub.b-cdn.net/api/grex/cdn/ranking`, {
         headers: { 'Authorization': `Bearer ${token}` },
         params: { page }
       });
@@ -32,7 +32,7 @@ export default function Ranking() {
   return (
     <div className='container'>
       <div className='notification is-light is-danger'>
-        <p><strong>Disclaimer:</strong> The rankings are updated every 15 minutes.</p>
+        <p><strong>Disclaimer:</strong> The rankings are updated every 1 hour.</p>
       </div>
 
       <div className='columns'>
