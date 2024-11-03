@@ -22,7 +22,7 @@ export default function Learn() {
 
                 // make API call
                 const token = getToken();
-                const response = await axios.get("https://sambha.in/api/grex/groups", {
+                const response = await axios.get("https://grexhub.b-cdn.net/api/grex/cdn/groups", {
                     headers: { 'Authorization': `Bearer ${token}` }
                 });
                 const data = response.data.data;
